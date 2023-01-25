@@ -21,16 +21,6 @@ public class IndexController {
 		return "index";
 	}
 	
-	@GetMapping(value = "/create")
-	public String createTable() {
-		service.add(new User("имя1", "фамилия1", (byte) 42, "почта1"));
-		service.add(new User("имя2", "фамилия2", (byte) 42, "почта2"));
-		service.add(new User("имя3", "фамилия3", (byte) 42, "почта3"));
-		service.add(new User("имя4", "фамилия4", (byte) 42, "почта4"));
-		service.add(new User("имя5", "фамилия5", (byte) 42, "почта5"));
-		return "index";
-	}
-	
 	@GetMapping(value = "/users")
 	public String printUsers(ModelMap model) {
 		List<User> users = service.getUserList();
@@ -56,13 +46,14 @@ public class IndexController {
 	
 	@PostMapping(value = "/userinfo", params = {"save"})
 	public String saveUserInfo(@ModelAttribute("user") User user) {
-		service.add(user);
+		service.addUser(user);
 		return "redirect:/users";
 	}
 	
-	@PostMapping(value = "/userinfo", params = {"update"})
-	public String updateUserInfo(@ModelAttribute("user") User user) {
-		service.update(user);
+	@PatchMapping(value = "/userinfo", params = {"update"})
+	public String updateUserInfo(@ModelAttribute User user) {
+		System.out.println("updateUserInfo");
+		service.updateUser(user);
 		return "redirect:/users";
 	}
 	

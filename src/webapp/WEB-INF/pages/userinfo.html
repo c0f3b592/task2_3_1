@@ -2,35 +2,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title> user info </title>
+    <meta charset="UTF-8">
+    <title> user info </title>
 </head>
 <body>
-<div>
-  <h1> user info </h1>
-  <form action="#" th:action="@{/userinfo}" method="post" th:user="${user}">
+<div th:if="update == ${action}">
+    <h1> user info update</h1>
+    <form action="#" th:action="@{/userinfo}" th:method="patch" th:user="${user}">
+        <input type="hidden" th:field="*{user.id}"/><br/>
 
-    <input type="hidden" th:field="*{user.id}" /><br/>
+        <label>first name:</label>
+        <input type="text" th:field="*{user.firstName}"/><br/>
 
-    <label>first name:</label>
-    <input type="text" th:field="*{user.firstName}" /><br/>
+        <label>last name:</label>
+        <input type="text" th:field="*{user.lastName}"/><br/>
 
-    <label>last name:</label>
-    <input type="text" th:field="*{user.lastName}" /><br/>
+        <label>age:</label>
+        <input type="text" th:field="*{user.age}"/><br/>
 
-    <label>age:</label>
-    <input type="text" th:field="*{user.age}" /><br/>
+        <label>e-mail:</label>
+        <input type="text" th:field="*{user.email}"/><br/>
 
-    <label>e-mail:</label>
-    <input type="text" th:field="*{user.email}" /><br/>
+        <button type="submit" th:name="update" th:value="true">update user</button>
+    </form>
+</div>
+<div th:if="new == ${action}">
+    <h1> user info new</h1>
+    <form action="#" th:action="@{/userinfo}" th:method="post" th:user="${user}">
+        <input type="hidden" th:field="*{user.id}"/><br/>
 
-    <div th:if="new == ${action}">
-      <button type="submit" th:name="save" th:value="true">save user</button>
-    </div>
-    <div th:if="update == ${action}">
-      <button type="submit" th:name="update" th:value="true">update user</button>
-    </div>
-  </form>
+        <label>first name:</label>
+        <input type="text" th:field="*{user.firstName}"/><br/>
+
+        <label>last name:</label>
+        <input type="text" th:field="*{user.lastName}"/><br/>
+
+        <label>age:</label>
+        <input type="text" th:field="*{user.age}"/><br/>
+
+        <label>e-mail:</label>
+        <input type="text" th:field="*{user.email}"/><br/>
+
+        <button type="submit" th:name="save" th:value="true">save user</button>
+    </form>
 </div>
 </body>
 </html>

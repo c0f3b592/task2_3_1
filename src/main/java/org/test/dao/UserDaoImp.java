@@ -18,7 +18,7 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
-   public void add(User user) {
+   public void addUser(User user) {
       em.persist(user);
    }
    
@@ -30,18 +30,24 @@ public class UserDaoImp implements UserDao {
    
    @Override
    public User getUserById(long id) {
-      TypedQuery<User> query = em.createQuery("select user from User user where id=:id", User.class).setParameter("id", id);
+      TypedQuery<User> query = em.createQuery("select user from User user where id=:id", User.class)
+              .setParameter("id", id);
       return query.getSingleResult();
    }
    
    @Override
-   public void update(User user) {
+   public void updateUser(User user) {
       em.merge(user);
    }
    
    @Override
-   public void delete(long id) {
+   public void deleteUser(long id) {
       em.remove(getUserById(id));
+   }
+   
+   @Override
+   public void cleanUser() {
+      em.createQuery("delete from User user").executeUpdate();
    }
    
 }

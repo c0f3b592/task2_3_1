@@ -4,13 +4,15 @@ import org.test.model.User;
 import java.util.List;
 
 public interface UserDao {
-   void add(User user);
+   void addUser(User user);
    
    List<User> getUserList();
    
    User getUserById(long id);
    
-   void update(User user);
+   void updateUser(User user);
    
-   void delete(long id);
+   void deleteUser(long id);
+    
+    void cleanUser();
 }

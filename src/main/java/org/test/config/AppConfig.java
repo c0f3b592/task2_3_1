@@ -15,7 +15,6 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScan("org.test")
 public class AppConfig {
     
     private final Environment environment;
