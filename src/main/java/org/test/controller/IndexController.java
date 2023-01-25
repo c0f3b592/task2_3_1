@@ -52,7 +52,6 @@ public class IndexController {
 	
 	@PatchMapping(value = "/userinfo", params = {"update"})
 	public String updateUserInfo(@ModelAttribute User user) {
-		System.out.println("updateUserInfo");
 		service.updateUser(user);
 		return "redirect:/users";
 	}

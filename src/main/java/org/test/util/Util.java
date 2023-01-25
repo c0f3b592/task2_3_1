@@ -11,7 +11,7 @@ import javax.annotation.PreDestroy;
 @Component
 public class Util {
     
-    private UserService service;
+    private final UserService service;
     
     @Autowired
     public Util(UserService service) {
