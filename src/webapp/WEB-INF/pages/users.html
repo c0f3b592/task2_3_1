@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Users </title>
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th> id</th>
+            <th> name</th>
+            <th> lastname</th>
+            <th> age</th>
+            <th> email</th>
+            <th> actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td><span th:text="${user.firstName}"> name </span></td>
+            <td><span th:text="${user.lastName}"> lastname </span></td>
+            <td><span th:text="${user.age}"> age </span></td>
+            <td><span th:text="${user.email}"> email </span></td>
+            <form action="#" th:action="@{/userinfo}" th:method="get">
+                <td>
+                    <button th:type="submit" th:name="id" th:value="${user.id}"> info</button>
+                </td>
+            </form>
+            <form action="#" th:action="@{/users}" th:method="delete">
+                <td>
+                    <button th:type="submit" th:name="id" th:value="${user.id}"> delete</button>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+
+    <form action="#" th:action="@{/userinfo}" th:method="get">
+        <td>
+            <button th:type="submit" th:name="newuser" th:value="${true}"> add</button>
+        </td>
+    </form>
+</div>
+</body>
+</html>
+
